@@ -1,0 +1,27 @@
+<%- include("partials/header.ejs") %>
+<form action="/login" method="POST">
+<div class="container mt-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <h2 id="center" class="forms-inputs mb-4">Log In</h2>
+            <div class="card px-5 py-5" id="form1">
+                <div class="form-data" v-if="!submitted">
+                    <div class="forms-inputs mb-4"> 
+                        <span>Username</span>
+                        <input type="text" class="form-control"  name = "username" placeholder ="Your username">
+                    </div>
+                    <div class="forms-inputs mb-4"> 
+                        <span>Password</span> 
+                        <input type="password" class="form-control"  name = "password" placeholder="Your password">
+                    </div>
+                    <div class="mb-3"> 
+                        <button type="submit" class="btn btn-dark w-100">Login</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+<%- include("partials/footer.ejs") %>

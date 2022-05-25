@@ -1,0 +1,41 @@
+<%- include("../partials/header.ejs") %>
+<form action="/prints/order/<%= foundCart._id %>/createOrder" method="POST">
+  <div class="container mt-4">
+      <div class="row d-flex justify-content-center">
+          <div class="col-md-6">
+              <h2 id="center" class="forms-inputs mb-4">My order</h2>
+              <div class="card px-5 py-5" id="form1">
+                  <div class="form-data" v-if="!submitted">
+                      <div > 
+                          <span>Phone Number</span>
+                          <input type="text" class="form-control"  name = "order[phone]" placeholder="<%= foundCart.user.phone%>">
+                      </div>
+                      <div > 
+                          <span>Your address</span> 
+                          <input type="text" class="form-control"  name = "order[address]" placeholder ="<%= foundCart.user.address%>">
+                      </div>
+                      <label  class="form-label">Payment Method</label>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="paymentMethod" id="flexRadioDefault1">
+                          <label class="form-check-label" for="flexRadioDefault1">
+                            Credit/Debit Card
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="paymentMethod" id="flexRadioDefault2" checked>
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            Cash
+                          </label>
+                        </div>
+                      
+                      <div class="mb-3"> 
+                          
+                          <button type="submit" class="btn btn-primary">Confirm order</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </form>
+<%- include("../partials/footer.ejs") %>

@@ -1,0 +1,57 @@
+<%- include("../partials/header.ejs") %>
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="images p-1">
+                            <img class="procuctShow" src="<%= print.image %>" width="320px">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-5">     
+                            <div class="mt-1 mb-3"> 
+                                <h2 class="text-uppercase"><%= print.name %></h2>
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price">฿ <%= print.price %></span>                                   
+                                </div>
+                            </div>
+                            <p class="about"><%= print.detail %></p>
+                            <div class="cart mt-4 align-items-center">
+                            <% if(!currentUser){ %>
+                                <a href="/login" class="btn btn-danger text-uppercase mr-2 px-4">Login to buy</a> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> 
+                            <% }else{ %>
+                               <a href="/prints/<%= print._id %>/addToCart" class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</a> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> 
+                            <% } %>
+                            </div>
+                            <br>
+                            <% if(currentUser && print.author.id.equals(currentUser._id) || (currentUser &&  currentUser.isAdmin)){ %>
+                                <a href="/prints/<%= print._id %>/edit" class="btn btn-sm btn-outline-secondary">Edit</a>  
+                                <form id="delete-form" action = "/prints/<%= print._id %>?_method=DELETE" method ="POST">
+                                    <button type= 'submit'class="btn btn-sm btn-outline-secondary">Delete</button>
+                                </form>
+                            <% } %>
+                            <div class="mt-1 mb-3"> 
+                                <h4 class="text-uppercase">Comments</h4>
+                                <a href="/prints/<%= print._id %>/comments/new" class="btn btn-sm btn-outline-secondary">Add new comment</a>                                 
+                                <%print.comments.forEach(function(comment){%>
+                                    <p>
+                                        <strong><%=comment.author.username %></strong> - <%=comment.text%>
+                                    </p>
+                                    <% if (currentUser && comment.author.id.equals(currentUser._id) || (currentUser &&  currentUser.isAdmin)){ %>
+                                        <a href="/prints/<%= print._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <form id= 'delete-form' action = "/prints/<%= print._id %>/comments/<%= comment._id %>?_method=DELETE" method ="POST">
+                                            <button type='submit' class="btn btn-sm btn-outline-secondary">Delete</button>
+                                        </form>
+                                    <% } %>
+                                <%})%> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs") %>

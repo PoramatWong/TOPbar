@@ -1,0 +1,25 @@
+<%- include("../partials/header.ejs") %>
+<div class="container">
+<h2>Edit product</h2>
+<form action="/prints/<%= print._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+<div class="mb-3">
+    <label  class="form-label">Name product</label>
+    <input type="text" class="form-control" name="print[name]" placeholder="<%= print.name %>", value = "<%= print.name %>">
+</div>
+<div class="mb-3">
+    <label class="form-label">Price</label>
+    <input type="text" class="form-control"  name = "print[price]" placeholder="<%= print.price %>", value = "<%= print.price %>">
+</div>
+<div class="mb-3">
+    <label class="form-label">Product details</label>
+    <input type="text" class="form-control"  rows="3" name = "print[detail]" placeholder="<%= print.detail %>", value = "<%= print.detail %>">
+</div>
+<div class="mb-3">
+    <label  class="form-label">Image</label>
+    <img src="<%= print.image%> " height="300px">
+    <input type="file" class="form-control"  name = "image" accept='image/*'>
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form> 
+</div>
+<%- include("../partials/footer.ejs") %>
